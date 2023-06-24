@@ -9,7 +9,7 @@
               <h1 class="text-grey">Hello,</h1>
               <h1 class="text-white">I'm Bimo Prakoso</h1>
               <span class="text-grey">Backend Developer</span><br/>
-              <v-btn tile dark class="text-yellow mt-8" variant="outlined">Contact me</v-btn>
+              <v-btn tile dark class="text-yellow mt-8" variant="outlined">Download CV</v-btn>
             </div>
           </v-col>
           <v-col cols="2">
@@ -33,32 +33,7 @@
           </v-col>
         </v-row>
       </div>
-      <v-col cols="12" class="mt-16" id="about">
-        <div>
-          <v-row>
-            <v-col cols="12" sm="6">
-              <div class="egg">
-                <v-img src="i2.png" max-height="300"></v-img>
-              </div>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <h5 class="mt-16">About Me</h5>
-              <div style="width: 120px">
-                <v-slider
-                  v-model="slider2"
-                  color="yellow"
-                ></v-slider>
-              </div>
-              <h4 class="mt-n4">I am a Backend Developer</h4>
-              <p class="text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <v-btn tile dark color="yellow" class="mt-4">
-                Download Resume
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
-      </v-col>
-      <div class="text-center mt-4">
+      <div class="text-center mt-16">
         <h2>Skill</h2>
         <div style="width:120px; margin: 0 auto">
           <v-slider v-model="slider2" color="yellow"></v-slider>
@@ -69,12 +44,12 @@
           <v-row>
             <v-col cols="12">
               <div class="child">
-                <v-btn icon="fas fa-laptop" color="#F8DF7E" class="text-white"></v-btn>
-                <h3 class="ml-3 mt-4">Web Design</h3>
-                <p class="text-grey ml-3 mt-4 text-caption">
-                  Lorem, ipsum dolor sit amet <br/>consectetur adipisicing
-                  <br/>consectetur adipisicing
-                </p>
+                <v-img src="laravel.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">Laravel</h3>
+              </div>
+              <div class="child">
+                <v-img src="codeigniter.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">Codeigniter</h3>
               </div>
             </v-col>
           </v-row>
@@ -197,10 +172,10 @@ import NavBar from "@/components/NavBar.vue";
 
 export default defineComponent({
   name: 'HomeView',
-  setup() {
+  data() {
     return {
       slider2: 50,
-
+      selectedItem: null,
       items: [
         {
           img: "haloteach.png",
