@@ -28,7 +28,7 @@
           </v-col>
           <v-col cols="5">
             <div style="position: relative; z-index: 9999" class="mt-16">
-              <v-img src="i1.png" contain max-height="300"></v-img>
+              <v-img src="avatar.png" contain max-height="300"></v-img>
             </div>
           </v-col>
         </v-row>
@@ -51,6 +51,30 @@
                 <v-img src="codeigniter.png" height="50px"></v-img>
                 <h3 class="ml-3 mt-4">Codeigniter</h3>
               </div>
+              <div class="child">
+                <v-img src="rest-api.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">RestAPI</h3>
+              </div>
+              <div class="child">
+                <v-img src="mysql.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">MySQL</h3>
+              </div>
+              <div class="child">
+                <v-img src="vue.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">Vue.js</h3>
+              </div>
+              <div class="child">
+                <v-img src="git.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">GIT</h3>
+              </div>
+              <div class="child">
+                <v-img src="javascript.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">Javascript</h3>
+              </div>
+              <div class="child">
+                <v-img src="unity.jpg" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">Unity</h3>
+              </div>
             </v-col>
           </v-row>
           <v-divider></v-divider>
@@ -64,16 +88,29 @@
           </div>
         </div>
         <div class="d-flex justify-center mb-6">
-          <v-btn color="#FBDF7E" class="mr-2">All</v-btn>
-          <v-btn class="mr-2" variant="tonal">Web Design</v-btn>
+          <v-btn :color="getButtonColor('All')" class="mr-2" @click="selectCategory('All')">All</v-btn>
+          <v-btn :color="getButtonColor('Web')" class="mr-2" @click="selectCategory('Web')">Web</v-btn>
+          <v-btn :color="getButtonColor('Web')" class="mr-2" @click="selectCategory('Game')">Game</v-btn>
         </div>
       </v-col>
+      <v-dialog v-model="dialog" max-width="1000px">
+        <v-card>
+          <v-carousel hide-delimiters v-model="carouselIndex" style="height: auto !important">
+            <v-carousel-item v-for="(item, index) in carouselItems" :key="index" style="display: flex">
+              <div>
+                <v-img :src="item.img" height="600px" contain></v-img>
+                <div class="text-description">{{ item.description }}</div>
+              </div>
+            </v-carousel-item>
+          </v-carousel>
+        </v-card>
+      </v-dialog>
       <v-col cols="12" class="imgHover">
         <v-row class="fill-height" align="center" justify="center">
-          <template v-for="(item, i) in items" :key="i">
+          <template v-for="(item, i) in filteredItems" :key="i">
             <v-col cols="12" md="4">
-              <v-hover v-slot="{isHovering, props}">
-                <v-card :elevation="isHovering ? 12: 2" :class="{'on-hover' : isHovering}" v-bind="props">
+              <v-hover v-slot="{ isHovering, props }">
+                <v-card :elevation="isHovering ? 12 : 2" :class="{'on-hover': isHovering}" v-bind="props" @click="openModal(item, i)">
                   <v-img :src="item.img" height="225px" cover></v-img>
                 </v-card>
               </v-hover>
@@ -175,28 +212,59 @@ export default defineComponent({
   data() {
     return {
       slider2: 50,
-      selectedItem: null,
       items: [
-        {
-          img: "haloteach.png",
-        },
-        {
-          img: "halokes.png",
-        },
-        {
-          img: "nitromax.png",
-        },
-        {
-          img: "autoglaze.png",
-        },
-        {
-          img: "united_tractor.png",
-        },
-        {
-          img: "jeruk_emas.png",
-        },
+        { img: "haloteach.png", category : "Web", description: '\n' +
+            'Haloteach is a website where teachers and students can engage in online learning. For teachers, there are several features such as creating classes for students to choose from, creating quizzes, ' +
+            'and uploading learning materials. As for students, they can select classes they want to take, participate in quizzes provided by teachers, access free materials from the classes they enroll in, and provide ratings for ' +
+            'teachers/classes they attend. Additionally, Haloteach collaborates with external tutoring services that wish to enter the world of online learning.' },
+        { img: "halokes.png", category : "Web", description: '\n' +
+            'Halokes is a website/application for school administration. In this system, the school can perform various tasks such as managing class schedules, the latest curriculum, teacher/student attendance, extracurricular activities, ' +
+            'and more. On the other hand, students can submit assignments, view their grade history from past semesters, or check their attendance records.' },
+        { img: "nitromax.png", category : "Web", description: 'Nitromax is a system designed to monitor nitrogen filling stations commonly found at gas stations. In addition to nitrogen filling, the system allows users to view sales data, such as tire repair transactions, ' +
+            'oil sales, tire replacement services, and more. Clients can perform various tasks on the Nitromax website, such as viewing sales data, modifying prices for goods/services, adding new services/products, monitoring operator attendance, and more. In addition to the website, ' +
+            'Nitromax utilizes a mobile application to connect the nitrogen machine to the Nitromax system.' },
+        { img: "autoglaze.png", category : "Web", description: 'Autoglaze is a POS system for car wash and other transactions. The application utilizes a mobile app and a website to monitor car wash transactions. The car wash service provider can perform various ' +
+            'actions using the application, such as inputting the car license plate, selecting services chosen by customers, adding desired extras, and more. Additionally, through the website system, the car wash service provider can monitor sales data, add new products/services, ' +
+            'modify prices, create vouchers and promotions, and perform other related tasks.' },
+        { img: "united_tractor.png", category : "Web", description: 'United Tractor is a website designed to monitor construction projects undertaken by United Tractor. It offers several features such as financial expense management, progress tracking for each construction project, a directory system, ' +
+            'geolocation services, and more.' },
+        { img: "jeruk_emas.png", category : "Game", description: 'Jeruk Emas is a Unity-based game where the player\'s objective is to find the golden orange while avoiding enemy pursuit. The enemy objects utilize two algorithms to chase the player. The first algorithm is A*, which finds the fastest path to the player. ' +
+            'The second algorithm is FSM (Finite State Machine), which has multiple states for chasing the player.' },
       ],
+      selectedCategory : 'All',
+      dialog: false,
+      selectedItem: null,
+      carouselIndex: 0,
     };
+  },
+  computed: {
+    filteredItems() {
+      if (this.selectedCategory === 'All') {
+        return this.items;
+      } else {
+        return this.items.filter((item) => item.category === this.selectedCategory);
+      }
+    },
+    carouselItems() {
+      if (this.selectedCategory === 'All') {
+        return this.items;
+      } else {
+        return this.items.filter((item) => item.category === this.selectedItem.category);
+      }
+    },
+  },
+  methods: {
+    selectCategory(category) {
+      this.selectedCategory = category;
+    },
+    getButtonColor(category) {
+      return this.selectedCategory === category ? '#FBDF7E' : '';
+    },
+    openModal(item, index) {
+      this.selectedItem = item;
+      this.carouselIndex = index;
+      this.dialog = true;
+    },
   },
   components: {
     NavBar,
@@ -274,5 +342,10 @@ export default defineComponent({
   padding: 0 200px;
   background-color: #E9E9E9;
   margin-top: -24px;
+}
+.text-description {
+  padding: 16px;
+  font-size: 16px;
+  text-align: center;
 }
 </style>
