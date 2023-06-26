@@ -78,6 +78,7 @@
           <v-btn :color="getButtonColor('All')" class="mr-2" @click="selectCategory('All')">All</v-btn>
           <v-btn :color="getButtonColor('Web')" class="mr-2" @click="selectCategory('Web')">Web</v-btn>
           <v-btn :color="getButtonColor('Game')" class="mr-2" @click="selectCategory('Game')">Game</v-btn>
+          <v-btn :color="getButtonColor('Discord')" class="mr-2" @click="selectCategory('Discord')">Discord Bot</v-btn>
         </div>
       </v-col>
       <v-dialog v-model="dialog" max-width="1000px">
@@ -171,6 +172,8 @@ export default defineComponent({
             'geolocation services, and more.' },
         { img: "jeruk_emas.png", category : "Game", description: 'Jeruk Emas is a Unity-based game where the player\'s objective is to find the golden orange while avoiding enemy pursuit. The enemy objects utilize two algorithms to chase the player. The first algorithm is A*, which finds the fastest path to the player. ' +
             'The second algorithm is FSM (Finite State Machine), which has multiple states for chasing the player.' },
+        { img: "link-changer.png", category : "Discord", description: 'A Discord Bot that has function to automatically modified url video from twitter, tiktok, and instagram so it can be played on discord without click the link because sometimes those url' +
+            'got error and can not be played. It is using existing library from other people github, so the bot only change the url.' },
       ],
       selectedCategory : 'All',
       dialog: false,
