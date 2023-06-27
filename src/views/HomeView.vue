@@ -67,8 +67,8 @@
           <v-divider></v-divider>
         </div>
       </v-col>
-      <v-col cols="12" sm="12" id="portfolio">
-        <div class="text-center mt-4">
+      <v-col cols="12" sm="12" id="portfolio" class="port">
+        <div class="text-center mt-4 ">
           <h2>Portfolio</h2>
           <div style="width:120px; margin: 0 auto">
             <v-slider v-model="slider2" color="yellow"></v-slider>
@@ -81,7 +81,7 @@
           <v-btn :color="getButtonColor('Discord')" class="mr-2" @click="selectCategory('Discord')">Discord Bot</v-btn>
         </div>
       </v-col>
-      <v-dialog v-model="dialog" max-width="1000px">
+      <v-dialog v-model="dialog" max-width="1000px" class="img-port">
         <v-card>
           <v-carousel hide-delimiters v-model="carouselIndex" style="height: 800px !important">
             <v-carousel-item v-for="(item, index) in carouselItems" :key="index" style="display: flex">
@@ -146,12 +146,22 @@
 
 <script>
 import { defineComponent } from 'vue';
+import ScrollReveal from "scrollreveal";
 
 // Components
 import NavBar from "@/components/NavBar.vue";
 
 export default defineComponent({
   name: 'HomeView',
+  mounted() {
+    const sr = ScrollReveal();
+
+    sr.reveal('.head', {origin: 'top', distance: '20px', duration: 1000});
+    sr.reveal('.padd', {origin: 'bottom', distance: '20px', duration: 1000});
+    sr.reveal('.port', {origin: 'left', distance: '20px', duration: 1000});
+    sr.reveal('.imgHover', {origin: 'right', distance: '20px', duration: 1000});
+    sr.reveal('.hire', {origin: 'bottom', distance: '20px', duration: 1000});
+  },
   data() {
     return {
       slider2: 50,

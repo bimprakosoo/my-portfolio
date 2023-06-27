@@ -1,9 +1,9 @@
 <template>
   <v-app-bar app color="#262A56" dark flat class="px-12 custom-navbar">
     <div class="d-flex justify-center w-100">
-    <v-btn text @click="scroll('home')" class="text-yellow">Home</v-btn>
-    <v-btn text @click="scroll('skill')" class="text-grey">Skill</v-btn>
-    <v-btn text @click="scroll('portfolio')" class="text-grey">Portfolio</v-btn>
+      <v-btn text @click="scroll('home')" class="text-yellow">Home</v-btn>
+      <v-btn text @click="scroll('skill')" class="text-grey">Skill</v-btn>
+      <v-btn text @click="scroll('portfolio')" class="text-grey">Portfolio</v-btn>
     </div>
   </v-app-bar>
 </template>
@@ -19,8 +19,11 @@ export default {
 }
 </script>
 <style scoped>
-.custom-navbar .v-btn {
-  display: flex;
-  justify-content: center;
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 </style>
