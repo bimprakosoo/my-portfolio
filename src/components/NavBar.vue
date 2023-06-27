@@ -1,9 +1,9 @@
 <template>
-  <v-app-bar app color="black" dark flat class="px-12 custom-navbar">
+  <v-app-bar app color="#262A56" dark flat class="px-12 custom-navbar">
     <div class="d-flex justify-center w-100">
     <v-btn text @click="scroll('home')" class="text-yellow">Home</v-btn>
-    <v-btn text @click="scroll('skill')">Skill</v-btn>
-    <v-btn text @click="scroll('portfolio')">Portfolio</v-btn>
+    <v-btn text @click="scroll('skill')" class="text-grey">Skill</v-btn>
+    <v-btn text @click="scroll('portfolio')" class="text-grey">Portfolio</v-btn>
     </div>
   </v-app-bar>
 </template>
