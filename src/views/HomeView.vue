@@ -109,7 +109,7 @@
       </v-col>
       <v-col cols="12" sm="12">
         <div class="d-flex justify-center mb-6">
-
+          <v-btn v-if="filteredItems.length >= 6" color="#FBDF7E" class="mt-4" @click="loadMore">Load More</v-btn>
         </div>
       </v-col>
       <v-col cols="12" id="contact">
@@ -161,6 +161,8 @@ export default defineComponent({
     sr.reveal('.port', {origin: 'left', distance: '20px', duration: 1000});
     sr.reveal('.imgHover', {origin: 'right', distance: '20px', duration: 1000});
     sr.reveal('.hire', {origin: 'bottom', distance: '20px', duration: 1000});
+
+    this.visibleItems = this.items.slice(0, this.loadCount);
   },
   data() {
     return {
@@ -200,6 +202,7 @@ export default defineComponent({
           framework: "Built with Node.js with discord.js plugin"
         },
       ],
+      loadCount: 6,
       selectedCategory : 'All',
       dialog: false,
       selectedItem: null,
@@ -209,7 +212,7 @@ export default defineComponent({
   computed: {
     filteredItems() {
       if (this.selectedCategory === 'All') {
-        return this.items;
+        return this.items.slice(0, this.loadCount);
       } else {
         return this.items.filter((item) => item.category === this.selectedCategory);
       }
@@ -221,6 +224,9 @@ export default defineComponent({
         return this.items.filter((item) => item.category === this.selectedItem.category);
       }
     },
+    visibleItems() {
+      return this.filteredItems.slice(0, 6);
+    }
   },
   methods: {
     selectCategory(category) {
@@ -237,6 +243,10 @@ export default defineComponent({
     scroll(refName) {
       const element = document.getElementById(refName);
       element.scrollIntoView({behavior: "smooth"});
+    },
+    loadMore() {
+      this.loadCount += 6;
+      this.visibleItems = this.items.slice(0, this.loadCount);
     }
   },
   components: {
