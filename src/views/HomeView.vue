@@ -201,6 +201,9 @@ export default defineComponent({
             'got error and can not be played. It is using existing library from other people github, so the bot only change the url.',
           framework: "Built with Node.js with discord.js plugin"
         },
+        { img: "chatgpt.png", category : "Discord", description: 'A Discord Bot that can answer your question like chatGPT. Using gpt 3.5 as a model for this bot, now you can ask anything in your server.',
+          framework: "Built with Node.js with discord.js and openai"
+        },
       ],
       loadCount: 6,
       selectedCategory : 'All',
