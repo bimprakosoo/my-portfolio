@@ -62,6 +62,10 @@
                 <v-img src="unity.jpg" height="50px"></v-img>
                 <h3 class="ml-3 mt-4">Unity</h3>
               </div>
+              <div class="child">
+                <v-img src="nodejs.png" height="50px"></v-img>
+                <h3 class="ml-3 mt-4">Node.js</h3>
+              </div>
             </v-col>
           </v-row>
           <v-divider></v-divider>
