@@ -200,8 +200,8 @@ export default defineComponent({
         },{ img: "track-task.png", category : "Web", description: 'A simple trello clone to track your task.',
           framework: "Built with Next.js, React Drag and Drop, and Firebase", url: "https://simple-trello-theta.vercel.app/"
         },
-        { img: "article-summarize.png", category : "Web", description: 'A simple application to summarize articles.',
-          framework: "Built with React.js, Vite, Tailwind.css, Redex, and RapidAPI", url: "https://article-summarize.vercel.app/"
+        { img: "article-summarize.png", category : "Web", description: 'A simple application to summarize articles and youtube videos.',
+          framework: "Built with React.js, Vite, Tailwind.css, Redex, and RapidAPI", url: "https://article-youtube-summarize.vercel.app/"
         },
         { img: "jeruk_emas.png", category : "Game", description: 'Jeruk Emas is a Unity-based game where the player\'s objective is to find the golden orange while avoiding enemy pursuit. The enemy objects utilize two algorithms to chase the player. The first algorithm is A*, which finds the fastest path to the player. ' +
             'The second algorithm is FSM (Finite State Machine), which has multiple states for chasing the player.',
